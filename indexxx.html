@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pannu ❤️ Chaaru</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: black;
+            color: white;
+            text-align: center;
+            font-family: Arial;
+            overflow: hidden;
+        }
+
+        h1 {
+            margin-top: 30px;
+        }
+
+        /* Hidden content */
+        .content {
+            display: none;
+            margin-top: 20px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        img {
+            width: 300px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px pink;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 22px;
+        }
+
+        button {
+            margin-top: 100px;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 25px;
+            border: none;
+            background: #ff4d88;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 0 15px pink;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ❤️ Floating Hearts */
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 20px;
+            animation: float 5s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Pannu ❤️ Chaaaru</h1>
+
+<button onclick="showLove()">Click Here ❤️</button>
+
+<!-- 💖 Hidden Section -->
+<div class="content" id="loveContent">
+    <img src="image.jpg" width="300">
+
+    <div class="message">
+        You are my today, my tomorrow, my forever 💖<br><br>
+        I Love You So Much Chaaru ❤️
+    </div>
+</div>
+
+<!-- 🎵 Music -->
+<iframe width="0" height="0"
+src="https://www.youtube.com/embed/BddP6PYo2gs?autoplay=1&loop=1&playlist=BddP6PYo2gs">
+</iframe>
+
+<script>
+function showLove() {
+    document.getElementById("loveContent").style.display = "block";
+}
+
+/* ❤️ Hearts Animation */
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}
+
+setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
