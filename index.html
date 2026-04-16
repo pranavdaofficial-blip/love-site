@@ -10,114 +10,122 @@
             background: black;
             color: white;
             text-align: center;
-            font-family: Arial;
+            font-family: Arial, sans-serif;
             overflow: hidden;
         }
 
         h1 {
-            margin-top: 30px;
+            margin-top: 40px;
+            font-size: 30px;
         }
 
-        /* Hidden content */
-        .content {
-            display: none;
-            margin-top: 20px;
-            animation: fadeIn 1.5s ease-in-out;
-        }
-
-        img {
-            width: 300px;
+        /* Main image */
+        .main-img {
+            width: 280px;
             border-radius: 20px;
+            margin-top: 20px;
             box-shadow: 0 0 20px pink;
         }
 
-        .message {
+        .content {
             margin-top: 20px;
-            font-size: 22px;
+            font-size: 18px;
+            padding: 0 20px;
         }
 
         button {
-            margin-top: 100px;
-            padding: 15px 30px;
-            font-size: 18px;
-            border-radius: 25px;
+            margin-top: 25px;
+            padding: 12px 25px;
             border: none;
-            background: #ff4d88;
-            color: white;
+            border-radius: 10px;
+            background: pink;
+            color: black;
+            font-size: 16px;
             cursor: pointer;
-            box-shadow: 0 0 15px pink;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        button:hover {
+            background: hotpink;
         }
 
-        /* ❤️ Floating Hearts */
-        .heart {
-            position: absolute;
-            color: red;
-            font-size: 20px;
-            animation: float 5s linear infinite;
+        /* Floating images */
+        .floating-img {
+            position: fixed;
+            bottom: -100px;
+            border-radius: 10px;
+            animation: floatUp 6s linear infinite;
+            z-index: 0;
+            opacity: 0.8;
         }
 
-        @keyframes float {
+        @keyframes floatUp {
             0% {
-                transform: translateY(100vh);
+                transform: translateY(0);
                 opacity: 1;
             }
             100% {
-                transform: translateY(-10vh);
+                transform: translateY(-110vh);
                 opacity: 0;
             }
+        }
+
+        /* Keep content above background */
+        body > * {
+            position: relative;
+            z-index: 1;
         }
     </style>
 </head>
 
 <body>
 
-<h1>Pannu ❤️ Chaaaru</h1>
+    <h1>Pannu ❤️ Chaaru</h1>
 
-<button onclick="showLove()">Click Here ❤️</button>
+    <!-- Main Image -->
+    <img class="main-img" src="image.jpg" alt="Love Image">
 
-<!-- 💖 Hidden Section -->
-<div class="content" id="loveContent">
-    <img src="image.jpg" width=250">
-
-    <div class="message">
-        You are my today, my tomorrow, my forever 💖<br><br>
-        I Love You So Much Chaaru ❤️
+    <div class="content" id="text">
+        You are the most special person in my life ❤️ <br>
+        This page is just for you 💖
     </div>
-</div>
 
-<!-- 🎵 Music -->
-<iframe width="0" height="0"
-src="https://www.youtube.com/embed/BddP6PYo2gs?autoplay=1&loop=1&playlist=BddP6PYo2gs">
-</iframe>
+    <button onclick="changeText()">Click Me 💌</button>
 
-<script>
-function showLove() {
-    document.getElementById("loveContent").style.display = "block";
-}
+    <script>
+        function changeText() {
+            document.getElementById("text").innerHTML =
+                "I Love You So Much ❤️ Forever & Always 💞";
+        }
 
-/* ❤️ Hearts Animation */
-function createHeart() {
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "❤️";
+        // 👇 Images from folder
+        const images = [
+            "image.jpg",
+            "image.jpg",
+            "image.jpg"
+        ];
 
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+        function createFloatingImage() {
+            const img = document.createElement("img");
+            img.classList.add("floating-img");
 
-    document.body.appendChild(heart);
+            // Random image
+            img.src = images[Math.floor(Math.random() * images.length)];
 
-    setTimeout(() => {
-        heart.remove();
-    }, 5000);
-}
+            // Random position
+            img.style.left = Math.random() * 100 + "vw";
 
-setInterval(createHeart, 300);
-</script>
+            // Random size
+            img.style.width = (50 + Math.random() * 60) + "px";
+
+            document.body.appendChild(img);
+
+            setTimeout(() => {
+                img.remove();
+            }, 6000);
+        }
+
+        setInterval(createFloatingImage, 500);
+    </script>
 
 </body>
 </html>
